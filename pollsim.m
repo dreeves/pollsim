@@ -89,6 +89,8 @@ ev     = data2012[[All,4]];
    were any trading (there's no trading because D or R is a shoo-in).
    Also make a hash from ID back to state abbrevation. *)
 each[x_, data2012, 
+  didhash[x[[1]]] = x[[2]];
+  ridhash[x[[1]]] = x[[3]];
   statehash[x[[2]]] = x[[1]];
   statehash[x[[3]]] = x[[1]];
   partyhash[x[[2]]] = "D";
@@ -111,6 +113,7 @@ fakedata[p_] := With[{start = {2012,2,7}},
          perturb@p, perturb@p, perturb@p, perturb@p, 666}, 
         {i, 0, DateDifference[start, DateList[]]}]]
 
+
 (*************************************************************************)
 (*                               INTRADE API                             *)
 (*************************************************************************)
@@ -129,6 +132,15 @@ phist[id_] := Module[{p = partyhash[id], s = shoo[statehash[id]]},
   Check[Rest@Import[cat[ithUrl, id]], 
     prn["\n\n<h1>phist: no intrade data; check back in 10 minutes</h1>\n"];
     Exit[1]]]
+
+(* testing...
+testoh = phist@ridhash@"OH";
+testil = phist@ridhash@"IL";
+testut = phist@ridhash@"UT";
+prn[{Dimensions[testoh], Dimensions[testil], Dimensions[testut]}];
+prn["OH R: ",Last@testoh,"\n","IL R: ",Last@testil,"\n","UT R: ",Last@testut,"\n"]; 
+Exit[1];
+*)
 
 (* Get electoral college threshold market prices. *)
 echist[id_] := Check[Import[cat[ithUrl, id]],
