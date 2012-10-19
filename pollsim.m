@@ -100,8 +100,8 @@ each[x_, data2012,
 
 perturb[p_] := Which[
   (* True,   p, *)
-  p==100, RandomReal[{99.995,99.999}],
-  p==0,   RandomReal[{0.0005,0.001}],
+  p==100, RandomReal[{97.0,99.0}],
+  p==0,   RandomReal[{1.0,3.0}],
   True,   RandomReal[{p-0.0001,p+0.0001}]
 ]
 
@@ -606,6 +606,7 @@ states =
    "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", 
    "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", 
    "WV", "WI", "WY"};
+*)
 (* from 2008:
 itd = 
   {416468, 416471, 416484, 416491, 416498, 416505, 416508, 416623, 416511, 
